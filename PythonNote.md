@@ -88,9 +88,61 @@
 数値や文字列をブール値へ変換する場合はbool()関数を使います。  
 0や0.0、空文字はFalseになりますが、それ以外はTrueです。
 
-![演習結果6_1](images/ex1-6_1.png)
+~~~python
+>>> int(3.14)
+3
+>>> int('-90')
+-90
+>>> int(True)
+1
+>>> int(False)
+0
+>>> int('Hello')
+Traceback (most recent call last):
+  File "<pyshell#43>", line 1, in <module>
+    int('Hello')
+ValueError: invalid literal for int() with base 10: 'Hello'
+>>> float(9)
+9.0
+>>> float('-90.568')
+-90.568
+>>> float(True)
+1.0
+>>> float(False)
+0.0
+>>> float("hello")
+Traceback (most recent call last):
+  File "<pyshell#48>", line 1, in <module>
+    float("hello")
+ValueError: could not convert string to float: 'hello'
+~~~
 
-![演習結果6_2](images/ex1-6_2.png)
+~~~python
+>>> str(3)
+'3'
+>>> str(0)
+'0'
+>>> str(-3.14)
+'-3.14'
+>>> str(True)
+'True'
+>>> str(False)
+'False'
+>>> bool(100)
+True
+>>> bool(0)
+False
+>>> bool(0.0)
+False
+>>> bool(-3.14)
+True
+>>> bool(True)
+True
+>>> bool(False)
+False
+>>> bool("Hello!")
+True
+~~~
 
 ### 1-7:リスト、タプル、辞書
 
@@ -112,9 +164,49 @@
 変更できる配列のことを、__ミュータブル（mutable）__  
 変更できない配列のことを、__イミュータル（immutable）__ と呼びます。
 
-![演習結果7_1](images/ex1-7_1.png)
+~~~python
+>>> math =80
+>>> english =62
+>>> japanese = 72
+>>> science = 55
+>>> total = math + english + japanese + science
+>>> avarage = total / 4
+>>> total
+269
+>>> avarage
+67.25
+>>> subject = (80, 62, 72, 55)
+>>> total2 = subject[0] + subject[1] + subject[2] + subject[3]
+>>> avarage2 = total2 / 4
+>>> total2
+269
+>>> avarage2
+67.25
+>>> subject2 = [80, 62, 72, 55]
+>>> total3 = subject[0] + subject[1] + subject[2] + subject[3]
+>>> avarage3 = total3 / 4
+>>> total3
+269
+>>> avarage3
+67.25
+~~~
 
-![演習結果7_2](images/ex1-7_2.png)
+~~~python
+>>> subject = [61, 34, 86, 98]
+>>> subject
+[61, 34, 86, 98]
+>>> subject[0] = 100
+>>> subject
+[100, 34, 86, 98]
+>>> subject2 = (28, 36, 48, 66)
+>>> subject2
+(28, 36, 48, 66)
+>>> subject2[0] = 80
+Traceback (most recent call last):
+  File "<pyshell#6>", line 1, in <module>
+    subject2[0] = 80
+TypeError: 'tuple' object does not support item assignment
+~~~
 
 リストのほうが融通は利きますが、タプルには下記のメリットがあります。
 
@@ -128,7 +220,25 @@
   - insertメソッドを使うと、指定した要素を追加できます。
   - del命令を使うと、リスト内の特定要素を削除できます。
 
-![演習結果7_3](images/ex1-7_3.png)
+~~~python
+>>> weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+>>> scores = [99, 72, 52, 85, 66, 42, 19]
+>>> animals = ["dog", "cat", "rabbit", "tiger", "lion"]
+>>> scores[1]
+72
+>>> scores[1] = 77
+>>> scores
+[99, 77, 52, 85, 66, 42, 19]
+>>> weekdays.append("Saturday")
+>>> weekdays
+['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+>>> animals.insert(3, "gorilla")
+>>> animals
+['dog', 'cat', 'rabbit', 'gorilla', 'tiger', 'lion']
+>>> del animals[2]
+>>> animals
+['dog', 'cat', 'gorilla', 'tiger', 'lion']
+~~~
 
 - タプルの変数代入
   - 上記で記述したように、タプルは要素の変更ができません。  
@@ -140,7 +250,27 @@
   これを __「アンパック」__ と呼びます。  
   また、応用すると1つの命令で変数の値を入れ替えたりもできます。
 
-![演習結果7_4](images/ex1-7_4.png)
+~~~python
+>>> pos = (56, 74)
+>>> pos
+(56, 74)
+>>> pos[0]
+56
+>>> pos[1]
+74
+>>> pos_x, pos_y = pos
+>>> pos_x
+56
+>>> pos_y
+74
+>>> x = 3
+>>> y = 6
+>>> (x, y) = (y, x)
+>>> x
+6
+>>> y
+3
+~~~
 
 - 辞書  
 辞書は、文字通り索引機能があります。  
@@ -148,9 +278,203 @@
 キーの値は「""」で囲み、その値を「:」の後ろに記述します。  
 データ型は任意ですが基本的にキーには文字列を使用することが多いです。
 
-![演習結果7_5](images/ex1-7_5.png)
+~~~python
+>>> score = {
+"math" : 78,
+"english" : 95,
+"chemistry" : 68,
+"science" : 62,
+}
+>>> score
+{'math': 78, 'english': 95, 'chemistry': 68, 'science': 62}
+>>> score["english"]
+95
+>>> score["math"]
+78
+>>> score["math"] = 82
+>>> score
+{'math': 82, 'english': 95, 'chemistry': 68, 'science': 62}
+~~~
 
 - リストのリスト  
 リストの中にさらに、リストやタプルを格納することが可能です。
 
-![演習結果7_6](images/ex1-7_6.png)
+~~~python
+>>> animals = ("Horse", "Lion", "Elephant")
+>>> scores = (35, 87, 63)
+>>> data = (animals, scores)
+>>> data
+(('Horse', 'Lion', 'Elephant'), (35, 87, 63))
+>>> data[0]
+('Horse', 'Lion', 'Elephant')
+>>> data[0][1]
+'Lion'
+>>> data[1]
+(35, 87, 63)
+>>> data[1][2]
+63
+~~~
+
+### 2-8:リストやタプルを扱うのに便利な関数
+
+- len  
+リストやタプルに含まれ要素の数を返します。  
+引数に2次元配列を与えると、一番外側のリスト項目数を返します。  
+内側のリスト項目数を求める場合は、len()の引数に内側のリストに渡す必要があります。
+
+~~~python
+>>> len([1, 2, 3, 4, 5])
+5
+>>> len(("small", "medium", "large"))
+3
+
+>>> data = [[1, 2], [3, 4, 5], [6, 7, 8, 9]]
+>>> len(data)
+3
+>>> len(data[2])
+4
+~~~
+
+- copy  
+ある変数にリストやタプルを格納していたとします。  
+その変数を別の変数に代入しても、そのリスト自体がコピーされることはありません。
+
+~~~python
+>>> a = [1, 2, 3]
+>>> b = a
+>>> a[2] = 9
+>>> a
+[1, 2, 9]
+>>> b
+[1, 2, 9]
+~~~
+
+aはリスト本体ではなくリストを代入した変数のため、上記のような結果になります。  
+変数aはリストの場所を指示しているだけです。この状態を __「参照」__ と呼びます。  
+リストの複製を行いたい場合は、copy()メソッドを使用します。
+
+~~~python
+>>> a = [1, 2, 3]
+>>> b = a.copy()
+>>> a[2] = 9
+>>> a
+[1, 2, 9]
+>>> b
+[1, 2, 3]
+~~~
+
+このとき、変数aのリストと変数bのリストは別物です。  
+もちろんですが、タプルにはcopy()メソッドは用意されていません。
+
+- in  
+ある値がリストやタプルに含まれているかチェックするときに使用します。  
+__調べたい値　in　リスト（またはタプル）__ と呼び出します。  
+値が含まれている場合は __True__ が、含まれていない場合は __False__ を返します。  
+また、何番目に格納されているか確認したいときは __index()メソッド__ を使用します。
+
+~~~python
+>>> greets = ("morning", "afternoon", "evening")
+>>> "noon" in greets
+False
+>>> "afternoon" in greets
+True
+>>> scores = [92, 45, 87, 36, 72]
+>>> 36 in scores
+True
+>>> 67 in scores
+False
+>>> greets.index("afternoon")
+1
+>>> scores.index(36)
+3
+>>> scores.index(99)
+Traceback (most recent call last):
+  File "<pyshell#25>", line 1, in <module>
+    scores.index(99)
+ValueError: 99 is not in list
+~~~
+
+- sort  
+Pythonではリストを並べ替えるために2つの方法があります。  
+  - sorted関数
+  引数で与えられたリストやタプルを並べ替えて、コピーを返します。  
+  元のリストの並び順は変わりません。
+
+  - sortメソッド  
+  元のリストをその場で並べ替えます。  
+  戻り値は返しません。
+
+~~~python
+>>> fruits = ["banana", "apple", "peach", "orange"]
+>>> sorted(fruits)
+['apple', 'banana', 'orange', 'peach']
+>>> fruits
+['banana', 'apple', 'peach', 'orange']
+>>> fruits.sort()
+>>> fruits
+['apple', 'banana', 'orange', 'peach']
+~~~
+
+- print  
+print()は引数で与えられた情報をコンソールに表示する関数です。  
+単一の値を表示する場合は、その内容を単に括弧の中に記述するだけです。  
+複数の値を表示する場合は、カンマ区切りで指定します。
+
+  - %演算子を使う方法  
+  元の文字列内に「%s」や「%d」などを書式を埋め込んでおきます。  
+  文字列の後ろに%演算子を配置し、その後ろにタプル形式で実データを配置します。  
+  書式の型と実際のデータは一致させる必要があります。一致しない場合はエラーになります。
+
+| 表記方法 | 内容       |
+| ---- | -------- |
+| %s   | 文字列      |
+| %d   | 10進数     |
+| %x   | 16進数     |
+| %f   | 10進float |
+
+~~~python
+>>> print("hello")
+hello
+>>> print(3)
+3
+>>> print(False)
+False
+>>> print("Hi!", "Python", 3)
+Hi! Python 3
+>>> "1=%s 2=%s" % ("Hello", "World")
+'1=Hello 2=World'
+>>> "value=(%d, %d)" % (2, 5)
+'value=(2, 5)'
+>>> "score=%f" % (2.457)
+'score=2.457000'
+>>> "age=%d" % ("Hello")
+Traceback (most recent call last):
+  File "<pyshell#40>", line 1, in <module>
+    "age=%d" % ("Hello")
+TypeError: %d format: a number is required, not str
+>>> val, name = 4, "Python"
+>>> print("val=%d, nam=%s" % (val, name))
+val=4, nam=Python
+~~~
+
+- formatメソッドを使う方法  
+書式付き文字列を同じように用意します。  
+データを挿入したい箇所に%を使わず、{}を配置します。  
+名前で指定することも可能です。
+
+~~~python
+>>> "1={} 2={}".format("Hello", "World")
+'1=Hello 2=World'
+>>> "value=({}, {})".format(2, 5)
+'value=(2, 5)'
+>>> "score={}".format(2.457)
+'score=2.457'
+>>> "value=({1}, {0})".format(3, 8)
+'value=(8, 3)'
+>>> "value=({weight}, {tall})".format(weight=62.8, tall=173.4)
+'value=(62.8, 173.4)'
+~~~
+
+インドより愛をこめて
+
+![インドの夜更け](images/GoodNightFromIndia.jpg)
