@@ -687,14 +687,14 @@ True
 
   2. if: elif:  
   複数の条件を使って、処理を切り分けます。
-  <pre>
+  ~~~python
   if 条件式1:
     条件式1がTrueのときの処理
   elif 条件式2:
     条件式2がTrueのときの処理
   else:
     上記の条件がすべてFalseのときの処理
-</pre>
+  ~~~
 
 ~~~python
 >>> if a == "man":
@@ -758,17 +758,20 @@ else:
 ~~~
 
 ちなみに、C、C++、Java、JavaScriptなど他の言語では、下記を記述します。
-<pre>x = (a > 0)?10:20</pre>
+
+~~~python
+x = (a > 0)?10:20
+~~~
 
 - while  
 繰り返しループ処理を行うための命令です。  
 
-<pre>
+~~~python
 while 条件式:
   命令1
   命令2
 命令3
-</pre>
+~~~
 
 ~~~python
 >>> counter = 0
@@ -862,12 +865,12 @@ forとは違い、番号を使わず順番に取得します。
 7
 ~~~
 
-<pre>
+~~~python
 range()の使い方
 ・range(最大値) = 引数が１つの時
 ・range(開始値, 最大値) = 引数が2つの時
 ・range(開始値, 最大値, ステップ) = 引数が3つの時
-</pre>
+~~~
 
 - break/continue
 
@@ -913,12 +916,12 @@ range()の使い方
 
 関数の定義
 
-<pre>
+~~~python
 def 関数名(引数1, 引数2):
     命令1
     命令n
     return 戻り値
-</pre>
+~~~
 
 ~~~python
 >>> def add(a, b):
@@ -966,9 +969,9 @@ Hi!
 - ラムダ関数  
 関数を定義するほどではないが、ちょっとした作業を行いたい場合に使用します。
 
-<pre>
+~~~python
 lambda 引数: 命令
-</pre>
+~~~
 
 ~~~python
 >>> is_even = lambda x: x % 2 == 0
@@ -985,9 +988,9 @@ Hi! Ken
 - map  
 リストやタプルの要素すべてに何らかの処理を行うときに使います。  
 
-<pre>
+~~~python
 map(処理を行う関数, リスト(タプル))
-</pre>
+~~~
 
 ~~~python
 >>> def make_double(x):
@@ -1003,9 +1006,9 @@ map(処理を行う関数, リスト(タプル))
 - filter  
 条件に合致した要素だけを抽出します。
 
-<pre>
+~~~python
 filter(要素を選ぶ関数, 配列)
-</pre>
+~~~
 
 ~~~python
 >>> list(filter(lambda a: a % 2 == 0, [0, 1, 2, 3, 4, 5]))
