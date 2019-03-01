@@ -600,10 +600,12 @@ Pythonは、 __インデントを使ってグループ化する__ という特�
 C++、C#、Java、JavaScriptなどは、複数文をグループ化するとき{}で囲います。  
 Pythonは{}を使用せず、インデントのみで記述できます。
 
-> if 条件式:  
-> 　　命令1  
-> 　　命令2  
-> 命令3
+<pre>
+if 条件式:  
+      命令1  
+      命令2  
+命令3
+</pre>
 
 たとえば、上記のif文の場合、Trueで命令1、Falseで命令2、命令3は必ず実行されます。  
 インデントに使用できるのは、Tabまたはスペースです。  
@@ -676,17 +678,25 @@ True
 - if文
   1. if: else:  
   条件式の結果によって、何かしら処理を行います。
+  <pre>
+  if 条件式:
+    条件式がTrueのときの処理  
+  else:  
+    条件式がFalseのときの処理
+  </pre>
   
   2. if: elif:  
   複数の条件を使って、処理を切り分けます。
+  <pre>
+  if 条件式1:
+    条件式1がTrueのときの処理
+  elif 条件式2:
+    条件式2がTrueのときの処理
+  else:
+    上記の条件がすべてFalseのときの処理
+</pre>
 
 ~~~python
- >>>  """
-  if 条件式:  
-  　　条件式がTrueのときの処理  
-  else:  
-  　　条件式がFalseのときの処理
-  """
 >>> if a == "man":
 	print("I'm man.")
 else:
@@ -694,14 +704,6 @@ else:
 
 I'm man.
 
->>> """
-if 条件式1:
-  条件式1がTrueのときの処理
-elif 条件式2:
-  条件式2がTrueのときの処理
-else:
-  上記の条件がすべてFalseのときの処理
-"""
 >>> if fruit == "apple":
 	print("red")
 elif fruit == "banana":
@@ -710,6 +712,323 @@ else:
 	print("unknown")
 
 yellow
+~~~
+
+### 2-3:ブール値以外の値
+
+条件式には、比較演算子だけでなく、値を直接指定することもできます。  
+
+|     | 条件式が成立しない  | 条件式が成立する |
+| --- | ---------- | -------- |
+| 数値  | ゼロ         | それ以外     |
+| 文字列 | 空文字列 ''や"" | それ以外     |
+| リスト | 空リスト[]     | それ以外     |
+| タプル | 空タプル（）     | それ以外     |
+
+~~~python
+>>> a = 3
+>>> if a:
+	print("True")
+else:
+	print("False")
+
+	
+True
+>>> a = 0
+>>> if a:
+	print("True")
+else:
+	print("False")
+
+	
+False
+~~~
+
+- 3項演算子
+
+if&nbsp;elseはよりシンプルに記述することも可能です。
+
+~~~python
+>>> if a > 0:
+	x = 10
+else:
+	x = 20
+
+>>> x = 10 if a > 0 else 20
+~~~
+
+ちなみに、C、C++、Java、JavaScriptなど他の言語では、下記を記述します。
+<pre>x = (a > 0)?10:20</pre>
+
+- while  
+繰り返しループ処理を行うための命令です。  
+
+<pre>
+while 条件式:
+  命令1
+  命令2
+命令3
+</pre>
+
+~~~python
+>>> counter = 0
+>>> while counter < 3:
+	print(counter)
+	counter += 1
+
+	
+0
+1
+2
+~~~
+
+~~~python
+>>> total = 0
+>>> index = 0
+>>> scores = (78, 95, 68, 62)
+>>> while index < len(scores):
+	total += scores[index]
+	index += 1
+
+	
+>>> avarage = total / len(scores)
+>>> avarage
+75.75
+~~~
+
+- for  
+変数indexを0で初期化し、順番に値を増やしながら配列にアクセスして値を取得します。
+
+~~~python
+>>> scores = (78, 95, 68, 62)
+>>> total = 0
+>>> for score in scores:
+	total += score
+
+	
+>>> avarage = total / len(scores)
+>>> avarage
+~~~
+
+~~~python
+>>> for letter in "hi!":
+	print(letter)
+
+	
+h
+i
+!
+~~~
+
+- range
+
+forとは違い、番号を使わず順番に取得します。  
+
+~~~python
+>>> for index in range(5):
+	print(index)
+
+	
+0
+1
+2
+3
+4
+~~~
+
+0以外の番号から開始したい場合は、下記のとおりです。
+
+~~~python
+>>> for val in range(3, 7):
+	print(val)
+
+	
+3
+4
+5
+6
+~~~
+
+ステップ数も指定できます。
+
+~~~python
+>>> for val in range(1, 8, 2):
+	print(val)
+
+	
+1
+3
+5
+7
+~~~
+
+<pre>
+range()の使い方
+・range(最大値) = 引数が１つの時
+・range(開始値, 最大値) = 引数が2つの時
+・range(開始値, 最大値, ステップ) = 引数が3つの時
+</pre>
+
+- break/continue
+
+  - break  
+  ループを抜け出します。
+
+  - continue  
+  ループの残りをスキップして先頭に戻ります。
+
+~~~python
+>>> count = 0
+>>> while True:
+	if count > 3:
+		break
+	print(count)
+	count += 1
+
+	
+0
+1
+2
+3
+~~~
+
+~~~python
+>>> for val in range(5):
+	print(val)
+	if val % 2 == 0:
+		continue
+	print("===")
+
+	
+0
+1
+===
+2
+3
+===
+4
+~~~
+
+### 2-4:関数
+
+関数の定義
+
+<pre>
+def 関数名(引数1, 引数2):
+    命令1
+    命令n
+    return 戻り値
+</pre>
+
+~~~python
+>>> def add(a, b):
+	return a + b
+
+>>> add(3, 4)
+7
+~~~
+
+戻り値が必要ない場合、returnを省略することも可能です。
+
+~~~python
+>>> def say_hello():
+	print("Hi!")
+
+	
+>>> say_hello()
+Hi!
+~~~
+
+（例）摂氏と華氏に変換する関数
+
+~~~python
+>>> def celsius_to_fahrenheit(degree):
+	return(degree * 1.8) + 32
+
+>>> celsius_to_fahrenheit(100)
+212.0
+>>> celsius_to_fahrenheit(32)
+89.6
+~~~
+
+- 引数のデフォルト値指定  
+関数を定義する際に、「引数=デフォルト値」と書くだけでデフォルト値を設定できます。
+
+~~~python
+>>> def confirm_age(age="24"):
+	print(age + "歳、学生です。")
+
+	
+>>> confirm_age()
+24歳、学生です。
+~~~
+
+- ラムダ関数  
+関数を定義するほどではないが、ちょっとした作業を行いたい場合に使用します。
+
+<pre>
+lambda 引数: 命令
+</pre>
+
+~~~python
+>>> is_even = lambda x: x % 2 == 0
+>>> is_even(2)
+True
+>>> is_even(3)
+False
+>>> 
+>>> say_hi = lambda name: print("Hi! " + name)
+>>> say_hi("Ken")
+Hi! Ken
+~~~
+
+- map  
+リストやタプルの要素すべてに何らかの処理を行うときに使います。  
+
+<pre>
+map(処理を行う関数, リスト(タプル))
+</pre>
+
+~~~python
+>>> def make_double(x):
+	return x * 2
+
+>>> list(map(make_double, [1, 2, 3]))
+[2, 4, 6]
+
+>>> list(map(lambda x: x*2, [1,2,3]))
+[2, 4, 6]
+~~~
+
+- filter  
+条件に合致した要素だけを抽出します。
+
+<pre>
+filter(要素を選ぶ関数, 配列)
+</pre>
+
+~~~python
+>>> list(filter(lambda a: a % 2 == 0, [0, 1, 2, 3, 4, 5]))
+[0, 2, 4]
+~~~
+
+- sorted
+数値なら昇順、文字列ならアルファベット順に並べ替えます。  
+「reverse=True」パラメーターを指定すると逆順に並べ替えます。
+
+~~~python
+>>> sorted([7, 4, 3, 1, 5])
+[1, 3, 4, 5, 7]
+>>> sorted([7, 4, 3, 1, 5], reverse = True)
+[7, 5, 4, 3, 1]
+>>> sorted(["banana", "apple", "peach"])
+['apple', 'banana', 'peach']
+>>> sorted(["banana", "apple", "peach"], reverse=True)
+['peach', 'banana', 'apple']
+>>> sorted(["bread", "rice", "spaghetti"], key=lambda x: len(x))
+['rice', 'bread', 'spaghetti']
+>>> sorted(["bread", "rice", "spaghetti"], key=lambda x: len(x), reverse=True)
+['spaghetti', 'bread', 'rice']
 ~~~
 
 インドより愛をこめて
