@@ -1034,6 +1034,81 @@ filter(要素を選ぶ関数, 配列)
 ['spaghetti', 'bread', 'rice']
 ~~~
 
+- リスト内包表記  
+mapやfilterのような処理を、リスト内包表記という記述方法でも同じ処理を行うことができます。
+
+__[式 for 要素名 in リスト]__
+
+~~~python
+>>> [x * 2 for x in [1,2,3,4]]
+[2, 4, 6, 8]
+>>> [x * x for x in range(5)]
+[0, 1, 4, 9, 16]
+>>> [[x, x+1, x+2] for x in [1, 2, 3]]
+[[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+>>> [[0 for x in range(3)] for y in range(4)]
+[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+>>> [[x*y*3 for x in range(3)] for y in range(4)]
+[[0, 0, 0], [0, 3, 6], [0, 6, 12], [0, 9, 18]]
+~~~
+
+~~~python
+>>> data = [[x*y*3 for x in range(3)] for y in range(4)]
+>>> data
+[[0, 0, 0], [0, 3, 6], [0, 6, 12], [0, 9, 18]]
+>>> [[x*2 for x in row] for row in data]
+[[0, 0, 0], [0, 6, 12], [0, 12, 24], [0, 18, 36]]
+~~~
+
+__[式 for 要素名 in リスト if 条件式]__
+
+~~~python
+>>> [x for x in [0,1,2,3,4,5] if x % 2 == 0]
+[0, 2, 4]
+>>> [x*3 for x in range(6) if x % 2 == 0]
+[0, 6, 12]
+~~~
+
+### 2-5:モジュール
+
+- モジュールのインポート
+必要なモジュールをインポートする際は、下記を記述します。  
+__import [モジュール名]__  
+モジュール内の特定の関数のみ使用したい場合は、下記のように記述します。  
+__from [モジュール名] import 関数名__
+
+~~~python
+import random
+
+for _ in range(5):
+    print(random.randint(0, 5))
+print("done")
+
+==== 実行結果 ====
+3
+4
+1
+5
+5
+done
+~~~
+
+~~~python
+from random import randint
+
+for _ in range(5):
+    print(randint(0 , 5))
+print("done")
+
+==== 実行結果 ====
+3
+2
+0
+2
+4
+done
+~~~
+
 インドより愛をこめて
 
 ![インドの夜更け](images/GoodNightFromIndia.jpg)
