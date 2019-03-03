@@ -1129,8 +1129,26 @@ print("import_test1 start")
 import import_test0
 
 #import_test0.py実行結果
+import_test0_start
+__name__ = __main__
+main executed
 
+#import_test1.py実行結果
+import_test1 start
+import_test0_start
+__name__ = import_test0
+~~~
 
+~~~python
+import ...
+初期化コード
+  関数・クラス定義、変数宣言など
+
+def main():
+  メインルーチン
+
+if __name__ == '__main__':
+  main()
 ~~~
 
 インドより愛をこめて
