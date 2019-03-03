@@ -1109,6 +1109,30 @@ print("done")
 done
 ~~~
 
+- main  
+Pythonのファイルは基本的に上から順番に実行します。  
+先ほど使用したimportを自分で作成したファイルにも使用できます。
+
+~~~python
+#import_test0.py
+print("import_test0_start")
+print("__name__ = {}".format(__name__))
+
+def main():
+    print("main executed")
+if __name__ == '__main__':
+    main()
+
+
+#import_test1.py
+print("import_test1 start")
+import import_test0
+
+#import_test0.py実行結果
+
+
+~~~
+
 インドより愛をこめて
 
 ![インドの夜更け](images/GoodNightFromIndia.jpg)
